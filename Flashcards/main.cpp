@@ -9,7 +9,6 @@
 #include <csignal>
 #include <algorithm>
 #include <filesystem>
-#include <ctype.h>
 
 bool save = false;
 
@@ -26,14 +25,6 @@ bool dirExists(const std::string& dirName_in)
 }
 
 std::vector<std::string> questions, answers;
-
-//Convert a character to an int
-int cti(char ch) {
-	if(isdigit(ch)) {
-		return static_cast<int>(ch) - 48;
-	}
-	return static_cast<int>(toupper(ch)) - 54
-}
 
 //Handle an input of ctrl+c
 void none(int signum) {
