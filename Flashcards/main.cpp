@@ -9,6 +9,7 @@
 #include <csignal>
 #include <algorithm>
 #include <filesystem>
+#include <ctype.h>
 
 bool save = false;
 
@@ -28,115 +29,10 @@ std::vector<std::string> questions, answers;
 
 //Convert a character to an int
 int cti(char ch) {
-	if (ch == '0') {
-		return 0;
+	if(isdigit(ch)) {
+		return static_cast<int>(ch) - 48;
 	}
-	if (ch == '1') {
-		return 1;
-	}
-	if (ch == '2') {
-		return 2;
-	}
-	if (ch == '3') {
-		return 3;
-	}
-	if (ch == '4') {
-		return 4;
-	}
-	if (ch == '5') {
-		return 5;
-	}
-	if (ch == '6') {
-		return 6;
-	}
-	if (ch == '7') {
-		return 7;
-	}
-	if (ch == '8') {
-		return 8;
-	}
-	if (ch == '9') {
-		return 9;
-	}
-	if (tolower(ch) == 'a') {
-		return 11;
-	}
-	if (tolower(ch) == 'b') {
-		return 12;
-	}
-	if (tolower(ch) == 'c') {
-		return 13;
-	}
-	if (tolower(ch) == 'd') {
-		return 14;
-	}
-	if (tolower(ch) == 'e') {
-		return 15;
-	}
-	if (tolower(ch) == 'f') {
-		return 16;
-	}
-	if (tolower(ch) == 'g') {
-		return 17;
-	}
-	if (tolower(ch) == 'h') {
-		return 18;
-	}
-	if (tolower(ch) == 'i') {
-		return 19;
-	}
-	if (tolower(ch) == 'j') {
-		return 20;
-	}
-	if (tolower(ch) == 'k') {
-		return 21;
-	}
-	if (tolower(ch) == 'l') {
-		return 22;
-	}
-	if (tolower(ch) == 'm') {
-		return 23;
-	}
-	if (tolower(ch) == 'n') {
-		return 24;
-	}
-	if (tolower(ch) == 'o') {
-		return 25;
-	}
-	if (tolower(ch) == 'p') {
-		return 26;
-	}
-	if (tolower(ch) == 'q') {
-		return 27;
-	}
-	if (tolower(ch) == 'r') {
-		return 28;
-	}
-	if (tolower(ch) == 's') {
-		return 29;
-	}
-	if (tolower(ch) == 't') {
-		return 30;
-	}
-	if (tolower(ch) == 'u') {
-		return 31;
-	}
-	if (tolower(ch) == 'v') {
-		return 32;
-	}
-	if (tolower(ch) == 'w') {
-		return 33;
-	}
-	if (tolower(ch) == 'x') {
-		return 34;
-	}
-	if (tolower(ch) == 'y') {
-		return 35;
-	}
-	if (tolower(ch) == 'z') {
-		return 36;
-	}
-	return 9999;
+	return static_cast<int>(toupper(ch)) - 54
 }
 
 //Handle an input of ctrl+c
@@ -219,91 +115,6 @@ int main() {
 	std::vector<std::string> list;
 	char cur;
 	std::string comp;
-
-	/*std::vector<std::string> orgList;
-	std::vector<int> poses;
-	int curren;*/
-
-	/*for (size_t x = 0; x < list.size(); x++) {
-		curren = list.size();
-		for (size_t y = 0; y < list.size(); y++) {
-			if (x != y) {
-				if (list[x].size() > list[y].size()) {
-					for (unsigned int z = 0; z < list[x].size(); z++) {
-						if (z < list[y].size()) {
-							if (cti(list[x].at(z)) > cti(list[y].at(z))) {
-								if (cti(list[x].at(z)) != 9999 && cti(list[y].at(z)) != 9999) {
-									curren++;
-									break;
-								}
-							}
-							else {
-								if (cti(list[x].at(z)) < cti(list[y].at(z))) {
-									if (cti(list[x].at(z)) != 9999 && cti(list[y].at(z)) != 9999) {
-										//if (curren > 0) {
-											curren--;
-										//}
-										break;
-									}
-								}
-							}
-						}
-						else {
-							break;
-						}
-					}
-				}
-				else {
-					for (unsigned int z = 0; z < list[y].size(); z++) {
-						if (z < list[x].size()) {
-							if (cti(list[x].at(z)) > cti(list[y].at(z))) {
-								if (cti(list[x].at(z)) != 9999 && cti(list[y].at(z)) != 9999) {
-									curren++;
-									break;
-								}
-							}
-							else {
-								if (cti(list[x].at(z)) < cti(list[y].at(z))) {
-									if (cti(list[x].at(z)) != 9999 && cti(list[y].at(z)) != 9999) {
-										//if (curren > 0) {
-											curren--;
-										//}
-										break;
-									}
-								}
-							}
-						}
-						else {
-							break;
-						}
-					}
-				}
-			}
-		}
-		poses.emplace_back(curren);
-	}
-
-	orgList = std::vector<std::string>(list.size());
-	for (size_t x = 0; x < poses.size(); x++) {
-		orgList[x] = list[poses[x]];
-	}*/
-
-	/*std::sort(list.begin(), list.end(), [&](const std::string &t1, const std::string &t2) {
-		if (t1.size() > t2.size()) {
-			for (size_t x = 0; x < t2.size(); x++) {
-				if (cti(t1[x]) != cti(t2[x]) && cti(t1[x]) != 9999 && cti(t2[x]) != 9999) {
-					return cti(t1[x]) > cti(t2[x]);
-				}
-			}
-		}
-		else {
-			for (size_t x = 0; x < t1.size(); x++) {
-				if (cti(t1[x]) != cti(t2[x]) && cti(t1[x]) != 9999 && cti(t2[x]) != 9999) {
-					return cti(t1[x]) > cti(t2[x]);
-				}
-			}
-		}
-	});*/
 
 	if (fileExists("sets/save.txt")) {
 		std::cout << "The last file you were writing was automatically saved. Would you like to recover it? (Keep in mind to fully recover it, you must select \"y,\" select the file you were previously writing in, and then save your changes there) (y/n): ";
